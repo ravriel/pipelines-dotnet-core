@@ -15,3 +15,11 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Newwaze Azure Lab(d5dcb05d-0f24-4679-970d-3e0309d2bd79)'
+    appType: 'webApp'
+    appName: 'ron-pipelines-test'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
